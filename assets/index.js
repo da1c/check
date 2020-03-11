@@ -50,7 +50,7 @@ function init() {
   sceneManager.AddObj(light);
 
   //テストで４００個表示
-  for (let x_idx = 0; x_idx < 2; x_idx++) {
+  for (let x_idx = 0; x_idx < 1; x_idx++) {
     for (let y_idx = 0; y_idx < 20; y_idx++) {
       let obj = new Obj3D();
       obj.SetMesh(CreateMesh(10, 10, 10));

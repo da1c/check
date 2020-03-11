@@ -1,21 +1,5 @@
 class Button2D extends Obj2D{
 
-
-    /**
-     *ボタンの形状
-     *
-     * @memberof Button2D
-     */
-    shape;
-
-    
-    /**
-     *テキストオブジェクト
-     *
-     * @memberof Button2D
-     */
-    text;
-
   /**
    *Creates an instance of Button2D.
    * @param {*} sizeX Xサイズ
