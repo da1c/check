@@ -12,8 +12,7 @@ class ObjectManager {
    */
   constructor() {
     ObjectManager.instance = this;
-    // 初期化処理
-    this.Init();
+
   }
 
   /**

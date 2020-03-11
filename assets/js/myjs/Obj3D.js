@@ -35,8 +35,8 @@ class Obj3D extends Obj {
   Draw() {
     this.mesh.position.set( this.pos.x, this.pos.y, this.pos.z);
     //console.log(this.mesh.position);
-    this.mesh.rotation.y += 0.02;
-    this.mesh.rotation.x += 0.03;
+    this.mesh.rotation.y += 0.01;
+    this.mesh.rotation.x += 0.01;
     this.mesh.rotation.z += 0.01;
   }
 

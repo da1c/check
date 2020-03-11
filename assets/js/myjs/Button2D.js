@@ -8,7 +8,7 @@ class Button2D extends Obj2D{
    * @param {*} fontSize フォントサイズ
    * @memberof Button2D
    */
-  constructor( posX, posY,sizeX, sizeY, textValue, fontSize){
+  constructor( posX, posY,sizeX, sizeY, textValue, fontSize, color){
 
     super();
 
@@ -26,7 +26,7 @@ class Button2D extends Obj2D{
     this.shape.y = 0; // Y 座標 200px の位置に配置
 
     // テキスト作成
-    this.text = new createjs.Text(textValue, fontSize + "px serif", "DarkRed");
+    this.text = new createjs.Text(textValue, fontSize + "px serif", color);
     // 垂直方向。中央寄せにする
     this.text.textBaseline = "middle";
     // 水平方向
@@ -57,7 +57,22 @@ class Button2D extends Obj2D{
    * @memberof Button2D
    */
   Update(){
+    // 表示状態の場合更新処理を行う
+    if(this.shape.isVisible){
 
+    }
+  }
+
+  
+  /**
+   *表示設定
+   *
+   * @param {boolean} setValue 表示フラグ
+   * @memberof Button2D
+   */
+  SetVisible( setValue ){
+    this.shape.visible = setValue;
+    this.text.visible = setValue;
   }
 
 

@@ -1,6 +1,5 @@
 "use strict";
 
-
 window.addEventListener("DOMContentLoaded", init);
 
 var width = 900;
@@ -30,7 +29,7 @@ function init() {
   taskManager.Init();
   // Objectマネージャー作成
   var objManager = new ObjectManager();
-
+  objManager.Init();
   // Stageマネージャー作成
   var stageManager = new StageManager();
   stageManager.Init("Canvas2D");
@@ -39,7 +38,7 @@ function init() {
   const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
 
   // カメラの座標更新
-  camera.position.set(100, 100, +500);
+  camera.position.set(150, 150, +500);
 
   // 平行光源
   const light = new THREE.DirectionalLight(0xffffff);
@@ -50,16 +49,15 @@ function init() {
   sceneManager.AddObj(light);
 
   //テストで４００個表示
-  for (let x_idx = 0; x_idx < 1; x_idx++) {
+  for (let x_idx = 0; x_idx < 20; x_idx++) {
     for (let y_idx = 0; y_idx < 20; y_idx++) {
       let obj = new Obj3D();
       obj.SetMesh(CreateMesh(10, 10, 10));
-      obj.SetPos( x_idx * 15, y_idx * 15, 0 );
+      obj.SetPos(x_idx * 15, y_idx * 15, 0);
       // オブジェクトをシーンに追加
       sceneManager.AddObj(obj.mesh);
     }
   }
-  
 
   // ここでフロー開始
   // ほぼイベントドリブンにする
@@ -82,19 +80,35 @@ function init() {
   }
 
   function init2D() {
-
     // テキストの表示
     // 座標はCanvasのサイズから算出
-    var test = new Button2D(200,0,100,50,"YES", 25);
+    var test = new Button2D(100, 0, 100, 100, "YES", 25, "Black");
     test.AddEvent("click", clickTest);
     stageManager.AddObj(test.container);
 
+    var test2 = new Button2D(300, 0, 100, 100, "NO", 25, "Blue");
+    test2.AddEvent("click", clickTest2);
+    stageManager.AddObj(test2.container);
+
+    clickTest2();
     // Stageの描画を更新します
     stageManager.UpdateStage();
-  }
 
-  function clickTest(){
-    console.log("Click");
-  }
+    // click時の処理
+    function clickTest() {
+      console.log("clickTest");
+      test.SetVisible(false);
+      test2.SetVisible(true);
+      // Stageの描画を更新します
+      stageManager.UpdateStage();
+    }
 
+    function clickTest2() {
+      console.log("clickTest2");
+      test.SetVisible(true);
+      test2.SetVisible(false);
+      // Stageの描画を更新します
+      stageManager.UpdateStage();
+    }
+  }
 }

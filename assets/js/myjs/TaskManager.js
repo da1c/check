@@ -23,10 +23,8 @@ class TaskManager{
         this.taskArray = new Array();
     }
 
-    // task登録
-
     /**
-     *
+     *Taskを登録
      * @static
      * @param {*} registTask
      * @memberof TaskManager
