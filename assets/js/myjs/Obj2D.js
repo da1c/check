@@ -1,10 +1,4 @@
 class Obj2D extends Obj {
-  /**
-   *CreateJSのコンテナ
-   *
-   * @memberof Obj2D
-   */
-  container;
 
   /**
    *Creates an instance of Obj2D.
