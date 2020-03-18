@@ -18,7 +18,7 @@ class Button2D extends Obj2D{
 
     // 枠作成
     this.shape = new createjs.Shape();
-    this.shape.graphics.beginFill("Red"); // 赤色で描画するように設定
+    this.shape.graphics.beginFill("white"); // 赤色で描画するように設定
     this.shape.graphics.drawRoundRect(0, 0, sizeX, sizeY, 10, 10); //半径 100px の円を描画
     // コンテナに追加
     this.container.addChild(this.shape);

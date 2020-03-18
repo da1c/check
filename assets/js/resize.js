@@ -10,8 +10,8 @@ function resize() {
     canvas.style.height = (window.innerHeight * 0.8) + "px";
 
     canvas = document.getElementById("Canvas2D");
-    canvas.style.width = "100%";
-    canvas.style.height = (window.innerHeight * 0.8) + "px";
+    canvas.style.width = "900px";
+    canvas.style.height ="900px";
 
     header = document.getElementById("header");
     header.style.width = "100%";
