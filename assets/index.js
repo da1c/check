@@ -9,11 +9,6 @@ async function init() {
   // 画面サイズ
   //var THREE = require("three");
 
-  var testVec = new THREE.Vector3(1, 1, 1);
-  var testVec2 = new THREE.Vector3(2, 2, 2);
-  testVec.sub(testVec2);
-
-  console.log(testVec);
   // レンダラー作成
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector("#Canvas3D")
@@ -100,7 +95,16 @@ async function init() {
   var questionIDX = 0;
   cameraManager.MainCameraObj.SetPos(GetNextCameraPos());
 
-  // 最初にresourceを読み込む？
+　// 床作成
+  // 床のメッシュを作成
+  let groundMesh = CreateGroundMesh();
+
+  //床用のObj3D作成
+  let groundObj = new Obj3D();
+  groundObj.SetMesh(groundMesh);
+  groundObj.SetPos( new THREE.Vector3(0,0,0) );
+  // シーンに追加
+  sceneManager.AddObj(groundMesh);
 
   // ここでフロー開始
   // ほぼイベントドリブンにする
@@ -125,6 +129,7 @@ async function init() {
     renderer.render(SceneManager.instance.scene, cameraManager.GetMainCamera());
   }
 
+  // 2D初期化
   function init2D() {
     // テキストの表示
     // 座標はCanvasのサイズから算出
@@ -143,8 +148,7 @@ async function init() {
     // click時の処理
     function clickTest() {
       console.log("clickTest");
-      //test.SetVisible(false);
-      //test2.SetVisible(true);
+
       questionIDX += 1;
       cameraManager.MainCameraObj.Move(
         GetNextCameraPos(),
@@ -179,11 +183,10 @@ async function init() {
       questionIDX = 0;
     }
 
-    var taskTarget = taskObjArray[questionIDX];
-    var cameraPos = taskTarget.GetCameraPos();
+    let taskTarget = taskObjArray[questionIDX];
+    let cameraPos = taskTarget.GetCameraPos();
     console.log(cameraPos);
-    return cameraPos;
-    cameraManager.MainCameraObj.SetPos(cameraPos);
+    return cameraPos.clone();
   }
 }
 

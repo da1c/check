@@ -36,6 +36,9 @@ class ObjCamera extends Obj {
     this.moveTime = 0.0;
     // 経過時間
     this.elapsedTime = 0.0;
+
+    // 移動完了通知
+    this.NoticeEndMove = () => {};
   }
 
   /**
@@ -96,13 +99,12 @@ class ObjCamera extends Obj {
     this.originPos = this.pos;
     this.originRot = this.rot;
     // 目標座標/角度との現在の座標/角度の差分算出
-    this.diffPos = SubVector3( dstPos,this.pos);
-    this.diffRot = SubVector3( dstRot, this.rot);
+    this.diffPos = SubVector3(dstPos, this.pos);
+    this.diffRot = SubVector3(dstRot, this.rot);
     // 移動時間を設定
     this.moveTime = moveTime;
 
     this.UpdateFunc = this.UpdateMove;
-
   }
 
   /**
@@ -116,25 +118,28 @@ class ObjCamera extends Obj {
     // 移動時間と経過時間の割合を算出
     let ratio = this.elapsedTime / this.moveTime;
 
-
     // 移動時間分経過しているか確認
     if (ratio >= 1.0) {
       // 座標などを目標値に設定
-      this.pos = AddVector3( this.originPos, this.diffPos);
-      this.rot = AddVector3( this.originRot, this.diffRot);
+      this.pos = AddVector3(this.originPos, this.diffPos);
+      this.rot = AddVector3(this.originRot, this.diffRot);
       // 更新処理を初期化
       this.UpdateFunc = () => {};
+
+      // 移動完了通知を出す
+      this.NoticeEndMove();
+      // 移動官僚通知を初期化
+      this.NoticeEndMove = ()=>{};
       return;
     }
 
     // 移動開始前の座標/角度に経過時間の割合分の差分情報を加算
     let workPos = this.diffPos.clone();
     let workRot = this.diffRot.clone();
-    workPos.multiplyScalar(ratio );
-    workRot.multiplyScalar( ratio);
-    this.pos = AddVector3( this.originPos, workPos);
-    this.rot = AddVector3( this.originRot, workRot);
-
+    workPos.multiplyScalar(ratio);
+    workRot.multiplyScalar(ratio);
+    this.pos = AddVector3(this.originPos, workPos);
+    this.rot = AddVector3(this.originRot, workRot);
   }
 
   /**
