@@ -95,16 +95,7 @@ async function init() {
   var questionIDX = 0;
   cameraManager.MainCameraObj.SetPos(GetNextCameraPos());
 
-　// 床作成
-  // 床のメッシュを作成
-  let groundMesh = CreateGroundMesh();
 
-  //床用のObj3D作成
-  let groundObj = new Obj3D();
-  groundObj.SetMesh(groundMesh);
-  groundObj.SetPos( new THREE.Vector3(0,0,0) );
-  // シーンに追加
-  sceneManager.AddObj(groundMesh);
 
   // ここでフロー開始
   // ほぼイベントドリブンにする
